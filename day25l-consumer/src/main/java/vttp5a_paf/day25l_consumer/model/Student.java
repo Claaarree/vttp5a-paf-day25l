@@ -1,7 +1,6 @@
 package vttp5a_paf.day25l_consumer.model;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -14,12 +13,12 @@ public class Student {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date dob;
+    private LocalDate dob;
 
     public Student() {
     }
 
-    public Student(int id, String name, Date dob) {
+    public Student(int id, String name, LocalDate dob) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -41,11 +40,11 @@ public class Student {
         this.name = name;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 

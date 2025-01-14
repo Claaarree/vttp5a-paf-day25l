@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>vttp5a-paf</groupId>
-	<artifactId>day25l-consumer</artifactId>
+	<artifactId>day25l-combined</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>day25l-consumer</name>
+	<name>day25l-combined</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -53,16 +53,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.json</artifactId>
-            <version>2.0.1</version>
-		</dependency>
-		<dependency>
-					<groupId>redis.clients</groupId>
-					<artifactId>jedis</artifactId>
-					<version>5.2.0</version>
 		</dependency>
 	</dependencies>
 
