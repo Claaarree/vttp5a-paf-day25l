@@ -9,18 +9,18 @@ import vttp5a_paf.day25l_producer.service.ProducerService;
 @SpringBootApplication
 public class Day25lProducerApplication {
 	
-	@Autowired
-	static ProducerService producerService;
+	// @Autowired
+	// static ProducerService producerService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Day25lProducerApplication.class, args);
 
-		for(int i = 0; i < 1000; i++) {
-			Todo todo = new Todo();
-			todo.setId(i);
-			todo.setTaskName("Task " + i);
-			producerService.sendMessage(todo);
-		}
+		// for(int i = 0; i < 1000; i++) {
+		// 	Todo todo = new Todo();
+		// 	todo.setId(i);
+		// 	todo.setTaskName("Task " + i);
+		// 	producerService.sendMessage(todo);
+		// }
 	}
 
 }

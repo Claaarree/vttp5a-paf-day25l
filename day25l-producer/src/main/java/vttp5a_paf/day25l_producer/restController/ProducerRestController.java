@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import vttp5a_paf.day25l_producer.model.Order;
+import vttp5a_paf.day25l_producer.model.Student;
 import vttp5a_paf.day25l_producer.model.Todo;
 import vttp5a_paf.day25l_producer.service.ProducerService;
 
@@ -22,6 +24,20 @@ public class ProducerRestController {
     public ResponseEntity<String> sendMessage(@RequestBody Todo todo) {
         producerService.sendMessage(todo);
         
+        return new ResponseEntity<>("Message sent", HttpStatus.OK);
+    }
+
+    @PostMapping("/student")
+    public ResponseEntity<String> sendMessage(@RequestBody Student student) {
+        producerService.sendMessage(student);
+        
+        return new ResponseEntity<>("Student sent", HttpStatus.OK);
+    }
+
+    @PostMapping("/publish")
+    public ResponseEntity<String> sendOrder(@RequestBody Order order) {
+        producerService.publish(order);
+
         return new ResponseEntity<>("Message sent", HttpStatus.OK);
     }
     
