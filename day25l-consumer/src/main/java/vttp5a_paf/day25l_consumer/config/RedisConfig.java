@@ -1,5 +1,8 @@
 package vttp5a_paf.day25l_consumer.config;
 
+import java.util.function.Consumer;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +14,7 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -111,26 +115,28 @@ public class RedisConfig {
         return redisTemplate;
     }
 
-    // @Bean
-    // public ChannelTopic topic() {
-    //     return new ChannelTopic(orderTopic);
-    // }
+    @Bean
+    public ChannelTopic topic() {
+        return new ChannelTopic(orderTopic);
+    }
 
-    // private MessageListener messageListener;
-    // private RedisConnectionFactory redisConnFac;
+    @Autowired
+    private ConsumerService messageListener;
+    @Autowired
+    private RedisConnectionFactory redisConnFac;
 
-    // @Bean
-    // public MessageListenerAdapter messageListenerAdapter() {
-    //     MessageListenerAdapter adapter = new MessageListenerAdapter(messageListener);
-    //     adapter.setDefaultListenerMethod("onMessage"); // Specify the method to handle messages
-    //     return adapter;
-    // }
+    @Bean
+    public MessageListenerAdapter messageListenerAdapter() {
+        MessageListenerAdapter adapter = new MessageListenerAdapter(messageListener);
+        // adapter.setDefaultListenerMethod("onMessage"); // Specify the method to handle messages
+        return adapter;
+    }
 
-    // @Bean
-    // public RedisMessageListenerContainer redisContainer(ChannelTopic topic) {
-    //     RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-    //     container.setConnectionFactory(redisConnFac);
-    //     container.addMessageListener(messageListener, topic);
-    //     return container;
-    // }
+    @Bean
+    public RedisMessageListenerContainer redisContainer(ChannelTopic topic) {
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(redisConnFac);
+        container.addMessageListener(messageListenerAdapter(), topic);
+        return container;
+    }
 }

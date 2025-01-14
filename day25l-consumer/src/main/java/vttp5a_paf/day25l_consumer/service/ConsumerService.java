@@ -13,9 +13,9 @@ import vttp5a_paf.day25l_consumer.model.Todo;
 
 @Service
 public class ConsumerService implements MessageListener{
-    @Autowired
-    @Qualifier("order")
-    private RedisTemplate<String, Order> template;
+    // @Autowired
+    // @Qualifier("order")
+    // private RedisTemplate<String, Order> template;
     
     public void handleMessage(Todo todo) {
         System.out.println(todo);

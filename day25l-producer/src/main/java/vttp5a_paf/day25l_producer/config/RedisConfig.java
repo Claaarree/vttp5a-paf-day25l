@@ -56,7 +56,7 @@ public class RedisConfig {
     RedisTemplate<String, Order> redisTemplate2 (RedisConnectionFactory connFac) {
         RedisTemplate<String, Order> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connFac);
-        redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+        redisTemplate.setDefaultSerializer(new GenericJackson2JsonRedisSerializer());
         redisTemplate.afterPropertiesSet();
 
         return redisTemplate;
