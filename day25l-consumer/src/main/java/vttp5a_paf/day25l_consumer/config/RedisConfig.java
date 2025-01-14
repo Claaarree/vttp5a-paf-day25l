@@ -17,7 +17,7 @@ import vttp5a_paf.day25l_consumer.service.ConsumerService;
 public class RedisConfig {
     
     @Value("${redis.topic1}")
-    private String redisTopic;
+    private String redisTopic1;
 
     @Bean
     RedisTemplate<String, Todo> redisTemplate(RedisConnectionFactory connFac,
@@ -40,7 +40,7 @@ public class RedisConfig {
     RedisConnectionFactory redisConnectionFactory) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(redisConnectionFactory);
-        container.addMessageListener(messageListenerAdapter, new PatternTopic(redisTopic));
+        container.addMessageListener(messageListenerAdapter, new PatternTopic(redisTopic1));
 
         return container;
     }
@@ -50,6 +50,6 @@ public class RedisConfig {
         MessageListenerAdapter adapter = new MessageListenerAdapter(redisConsumerService);
         adapter.setSerializer(new Jackson2JsonRedisSerializer<>(Todo.class));
         
-        return null;
+        return adapter;
     }
 }
