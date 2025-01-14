@@ -1,7 +1,5 @@
 package vttp5a_paf.day25l_consumer.config;
 
-import java.util.function.Consumer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -128,7 +126,7 @@ public class RedisConfig {
     @Bean
     public MessageListenerAdapter messageListenerAdapter() {
         MessageListenerAdapter adapter = new MessageListenerAdapter(messageListener);
-        // adapter.setDefaultListenerMethod("onMessage"); // Specify the method to handle messages
+
         return adapter;
     }
 
